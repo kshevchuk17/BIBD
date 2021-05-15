@@ -20,22 +20,20 @@ export const CreateRequestDepositPage = () => {
             const data = await request('http://localhost:8000/deposit/request_for_opening/', 'POST', form, {
                 Authorization: `Bearer ${token.access}`
             })
-            // history.goBack()
-            // history.push('/profile/detail/')
         } catch (e) { }
     }
-
     const getDepositsType = useCallback(async () => {
         const res = await request('http://localhost:8000/deposit_type/all/', 'GET', null, {
             Authorization: `Bearer ${token.access}`
         })
         console.log(res)
         setDepositsType(res)
+        console.log(DepositsType)
     }, [token, request])
 
     useEffect(() => {
         getDepositsType()
-    }, [])
+    }, [getDepositsType])
 
     return (
         <div className="row">
@@ -52,10 +50,10 @@ export const CreateRequestDepositPage = () => {
                     />
                     <label htmlFor="link">Enter amount of deposit</label>
                 </div>
-                <div className="DepositsType" id="">
-                    <select size={DepositsType.length}>
-                        {DepositsType.map((item, id) => (
-                        <option key={id} value={form.deposit_type}>{item?.deposit_type}</option>
+                <div>
+                    <select size={DepositsType?.length} style={{display: 'block'}}>
+                        {DepositsType?.map((item, id) => (
+                        <option key={id} value={form.deposit_type}>{item?.deposit_name}</option>
                     ))}
                     </select>
                 </div>

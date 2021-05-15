@@ -8,6 +8,7 @@ import { DepositsTypePage } from './pages/DepositsTypePage'
 import { DepositsPage } from './pages/DepositsPage'
 import { CreditsPage } from './pages/CreditsPage'
 import { CreateRequestDepositPage } from './pages/RequestForOpeningDeposit'
+import { CreateRequestCreditPage } from './pages/RequestForOpeningCredit'
 
 
 
@@ -37,7 +38,10 @@ export const useRoutes = isAutentificated => {
                 <Route path="/deposit/request_for_opening/" exact>
                     <CreateRequestDepositPage />
                 </Route>
-                <Redirect to="/" />
+                <Route path="/credit/request_for_opening/" exact>
+                    <CreateRequestCreditPage />
+                </Route>
+                <Redirect to="/profile/detail/" />
             </Switch>
         )
     }

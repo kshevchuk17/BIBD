@@ -10,6 +10,12 @@ export const DepositsPage = () => {
     const [Deposits, setDeposits] = useState([])
     const history = useHistory();
 
+    const requestHandler = async () => {
+        try {
+            history.goBack()
+            history.push('/deposit/request_for_opening/')
+        } catch (e) {}
+    }
 
     const getDeposits = useCallback(async () => {
         const res = await request('http://localhost:3000/deposit/all/',  'GET', null, {
@@ -39,6 +45,15 @@ export const DepositsPage = () => {
                     <hr />
                 </div>
             ))}
+            <div>
+                <button 
+                    className="btn grey lighten-1 black-text"
+                    onClick={requestHandler}
+                    disabled={loading}
+                    >
+                        Create Request For Deposit
+                </button>
+            </div>
         </div>
     )
 }
