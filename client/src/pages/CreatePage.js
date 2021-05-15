@@ -94,7 +94,7 @@ const profileHandler = async () => {
             disabled={loading}
             >
                 Create Profile
-            </button>
+        </button>
       </div>
     </div>
   )

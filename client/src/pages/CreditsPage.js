@@ -11,6 +11,13 @@ export const CreditsPage = () => {
     const history = useHistory();
 
 
+    const requestHandler = async () => {
+        try {
+            history.goBack()
+            history.push('/credit/request_for_opening/')
+        } catch (e) {}
+    }
+
     const getCredits = useCallback(async () => {
         console.log('before request')
         const res = await request('http://localhost:8000/credit/all/',  'GET', null, {
@@ -46,6 +53,15 @@ export const CreditsPage = () => {
                     <hr />
                 </div>
             ))}
+            <div>
+                <button 
+                    className="btn grey lighten-1 black-text"
+                    onClick={requestHandler}
+                    disabled={loading}
+                    >
+                        Create Request For Deposit
+                </button>
+            </div>
         </div>
     )
 }
